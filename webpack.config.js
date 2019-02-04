@@ -1,21 +1,23 @@
 const path = require('path');
 const webpack = require("webpack");
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
-//TODO: Setup express server https://webpack.js.org/guides/development/
 
 module.exports = {
+  mode: 'development',
   entry: {
     app: './src/index.js',
   },
 
   output: {
     filename: 'main.js',
-    publicPath: "/dist/",
+    publicPath: "",
     path: path.resolve(__dirname, 'dist')
   },
 
   resolve: { 
-    extensions: ["*", ".js", ".jsx"] 
+    extensions: ["*", ".js", ".jsx", ".CSS"] 
   },
 
   module: {
@@ -62,7 +64,14 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      template: "public/index.html",
+      favicon: "public/favicon.png"
+    }),
+    new CleanWebpackPlugin(['dist'], {
+      exclude: ["index.html"],
+    })
   ]
 
 };

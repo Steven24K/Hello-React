@@ -1,11 +1,11 @@
 import React, { Component} from "react";
 import { MainText } from "./components/MainText"
-import './assets/App.css';
+import css from './assets/App.css';
 
 export default class App extends Component{
   constructor() {
     super()
-    this.state = {interval: 2000}
+    this.state = {interval: 3000}
 
     this.handleChange = this.handleChange.bind(this)
   }
